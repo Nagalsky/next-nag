@@ -6,7 +6,7 @@ export default function Document() {
       <Head>
         <meta name="theme-color" content="#ffffff" />
       </Head>
-      <body className="text-base antialiased dark:bg-body-gradient dark:text-semi-white bg-semi-white text-dark-500">
+      <body className="text-base antialiased bg-slate-700 text-white">
         <Main />
         <NextScript />
       </body>

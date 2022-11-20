@@ -1,35 +1,34 @@
 import { useSession, signIn, signOut } from 'next-auth/react'
 import Link from 'next/link'
+import { useState } from 'react'
+import { useRouter } from 'next/router'
+import HeaderNavbar from './header-navbar'
 
 export default function Header() {
-  const { data: session, status } = useSession()
+  const { data: session } = useSession()
 
-  if (status === 'loading') return <p>Loading...</p>
+  const router = useRouter()
+
+  const [isMobileMenuOpen, setIsMobileMenuOpened] = useState(false)
 
   return (
-    <header>
-      <Link href="/">Im a logo</Link>
+    <header className="shadow-xl bg-slate-900 py-3 relative">
+      <div className="container flex items-center justify-between gap-4">
+        <Link href="/" className="font-bold shrink-0">
+          Logo
+        </Link>
 
-      <Link href="/dashboard">to dashboard</Link>
-
-      {session ? (
-        <>
-          <p>Welcome, {session?.user?.email}</p>
+        {session ? (
+          <HeaderNavbar />
+        ) : (
           <button
-            onClick={() => signOut()}
-            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2  focus:outline-none"
+            onClick={() => signIn()}
+            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 focus:outline-none"
           >
-            log out
+            Login
           </button>
-        </>
-      ) : (
-        <button
-          onClick={() => signIn()}
-          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2  focus:outline-none"
-        >
-          sign in
-        </button>
-      )}
+        )}
+      </div>
     </header>
   )
 }
