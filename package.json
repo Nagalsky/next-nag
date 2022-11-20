@@ -3,12 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "dev": "env-cmd -f .env.development next dev",
+    "build": "env-cmd -f .env next build",
+    "start": "env-cmd -f .env next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "env-cmd": "^10.1.0",
     "next": "13.0.3",
     "next-auth": "^4.16.4",
     "react": "18.2.0",
