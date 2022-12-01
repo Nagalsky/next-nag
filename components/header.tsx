@@ -14,6 +14,10 @@ const navbarUrls = [
     url: '/me',
     name: 'Me',
   },
+  {
+    url: '/shop',
+    name: 'Shop',
+  },
 ]
 
 export default function Header() {

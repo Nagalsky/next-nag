@@ -1,4 +1,6 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { cartReducer } from "./cart/cartSlice";
+import { productApi } from "./product/product.api";
 import counterReducer from "./slices/counterSlice";
 import todosReducer from "./slices/todoSlice";
 
@@ -6,10 +8,13 @@ const reducer = combineReducers({
     // put all your reducers here!
     counter: counterReducer,
     todos: todosReducer,
+    [productApi.reducerPath]: productApi.reducer,
+    cart: cartReducer
 });
 
 const store = configureStore({
-    reducer
+    reducer,
+    middleware: getDefaultMiddleware => getDefaultMiddleware().concat(productApi.middleware)
 });
 
 export default store;
