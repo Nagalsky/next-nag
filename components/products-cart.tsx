@@ -17,7 +17,7 @@ const ProductsCart: FC = () => {
         {cart.length ? (
           <>
             <div className="flex flex-col gap-4">
-              {cart.map((product: IProduct) => (
+              {cart.map((product) => (
                 <div
                   className="bg-purple-300 rounded p-4 text-white space-y-4"
                   key={product.id}
